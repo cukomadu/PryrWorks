@@ -2,6 +2,21 @@ import Backbone from 'backbone'
 import $ from 'jquery'
 import {app_name} from '../app'
 
+// ......................................
+// Create Pryr List Model and Collection
+// ......................................
+
+const PryrModel = Backbone.Model.extend({
+	urlRoot: '/api/pryrs',
+	idAttribute: '_id'
+})
+
+const PryrCollection = Backbone.Collection.extend({
+	model: 'PryrModel',
+	url: '/api/pryrs'
+})
+
+
 // ..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x
 const UserAuthModel = Backbone.Model.extend({
 	urlRoot: '/api/users',
@@ -64,4 +79,4 @@ const User = UserAuthModel.extend({
 	}
 })
 
-export { User }
+export { User, PryrModel, PryrCollection }

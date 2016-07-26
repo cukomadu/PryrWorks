@@ -2,10 +2,11 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import Backbone from 'backbone'
 import init from './init'
+import { User, PryrModel, PryrCollection } from './models/models'
 
 
 const app = function() {
-  document.querySelector('.container').innerHTML = "<h1>Woah!</h1>"
+  //document.querySelector('.container').innerHTML = "<h1>Woah!</h1>"
 }
 
 // x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..x..

@@ -22,11 +22,11 @@ const usersSchema = new Schema({
 // PRYR LISTS
 // -----------------------
 const pryrSchema = new Schema({
-	title: {type: String, required: true},
-	to: {type: String, required: true},
-	from: {type:String, required: true},
+	title: {type: String/*, required: true*/},
+	to: {type: String/*, required: true*/},
+	from: {type:String/*, required: true*/},
 	reply_to: {type:String},
-	description: {type: String, required: true},
+	description: {type: String/*, required: true*/},
 	category: {type: String},
 	cc_bcc: {type: String},
 	answered: {type: Boolean, default: false}
