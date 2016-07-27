@@ -12,8 +12,8 @@ const PryrModel = Backbone.Model.extend({
 })
 
 const PryrCollection = Backbone.Collection.extend({
-	model: 'PryrModel',
-	url: '/api/pryrs'
+	model: PryrModel,
+	url: '/api/myPryrs'
 })
 
 

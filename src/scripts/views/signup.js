@@ -2,26 +2,26 @@ import React from 'react'
 import ACTIONS from '../actions'
 import Header from './header'
 
-const LogIn = React.createClass({
+const SignUp = React.createClass({
 	render: function(){
 		return (
-				<div className="LogIn">
+				<div className="SignUp">
 					<Header />
-					<LoginForm />
+					<SignUpForm />
 				</div>
 			)
 	}
 })
 
-const LoginForm = React.createClass({
+const SignUpForm = React.createClass({
 	render: function(){
 		return (
-				<div className="loginForm loginView">
+				<div className="signUpForm signUpView">
 					<form>
-						<h3>Log In</h3>
+						<h3>Sign Up</h3>
 						<label>Enter Email Address</label>
 						<input type="email" name="email" placeholder="Email Address" />
-						<label>Enter Password</label>
+						<label>Create Password</label>
 						<input type="password" name="password" placeholder="Password" />
 						<button type="submit">Log In</button>
 					</form>
@@ -30,4 +30,4 @@ const LoginForm = React.createClass({
 	}
 })
 
-export default LogIn
+export default SignUp

@@ -14,7 +14,7 @@ const app = function() {
  
   const PryrRouter = Backbone.Router.extend({
   	routes: {
-  		"/pryrs/read": "_showMyPryrs",
+  		"/pryrs/read": "_showPryrs",
   		"/pryrs/create": "_showPryrEditor",
   		"login": "_showLogin",
   		"signup": "_showSignUp",
@@ -22,9 +22,9 @@ const app = function() {
   		"*catchall": "_redirect"
   	},
 
-  	_showAllPryrs: function(){
+  	_showPryrs: function(){
   		console.log('this is MyPryrs')
-  		ReactDOM.render(<MyPryrs />, document.querySelector('.container'))
+  		ReactDOM.render(<Pryrs />, document.querySelector('.container'))
   	}
 
   	_showPryrEditor: function(){

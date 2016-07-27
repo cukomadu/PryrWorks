@@ -15,12 +15,12 @@ const Header = React.createClass({
 const NavBar = React.createClass({
 	render: function(){
 		return (
-				<div className="NavBar aLinks">
+				<div className="NavBar navLinks">
 					<a href="#home">Home</a>
 					<a href="#login">Log In</a>
 					<a href="#signup">Sign Up</a>
-					<a href="#messages/read">Your Prayers</a>
-					<a href="#messages/write">Add Prayer</a>
+					<a href="#pryrs/read">Your Prayers</a>
+					<a href="#pryrs/write">Add A Prayer</a>
 					<a href="#" onClick={ACTIONS.logUserOut} >Log Out</a>
 				</div>
 			)
