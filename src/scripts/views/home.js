@@ -7,8 +7,8 @@ const Home = React.createClass({
 				<div>
 					<Header />
 					<div>
-						<h2>DOES PRAYER WORK? TRACK AND SEE!</h2>
-						<p>The World's Leading Prayer Organizer for measuring the effectiveness of prayer</p>
+						<h2>TRACK. PRAYER. BETTER.</h2>
+						<p>The world's leading prayer organizer, tracker, & effectiveness platform</p>
 					</div>
 					<div>
 					</div>
