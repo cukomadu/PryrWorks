@@ -43,6 +43,10 @@ const ACTIONS = {
     		console.log(data)
     		alert('Pryr saved successfully')
     	})
+    },
+
+    fetchPryrs: function(){
+    	
     }
 }
 
