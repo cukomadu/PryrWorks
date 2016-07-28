@@ -16,12 +16,12 @@ const NavBar = React.createClass({
 	render: function(){
 		return (
 				<div className="NavBar navLinks">
-					<a href="#home">Home</a>
-					<a href="#login">Log In</a>
-					<a href="#signup">Sign Up</a>
-					<a href="#pryrs/read">Your Prayers</a>
-					<a href="#pryrs/write">Add A Prayer</a>
-					<a href="#" onClick={ACTIONS.logUserOut} >Log Out</a>
+					<a className="button button-primary" href="#home">Home</a>
+					<a className="button button-primary" href="#login">Log In</a>
+					<a className="button button-primary" href="#signup">Sign Up</a>
+					<a className="button button-primary" href="#pryrs/read">Your Prayers</a>
+					<a className="button button-primary" href="#pryrs/create">Add A Prayer</a> 
+					<a className="button button-primary" href="#" onClick={ACTIONS.logUserOut} >Log Out</a>
 				</div>
 			)
 	}

@@ -14,10 +14,20 @@ const LogIn = React.createClass({
 })
 
 const LoginForm = React.createClass({
+
+	_getLogInInfo: function(evt){
+		evt.preventDefault()
+		console.log(evt.currentTarget.email.value, '>>>>', evt.currentTarget.password.value)
+		
+		ACTIONS.logUserIn(evt.currentTarget.email.value, evt.currentTarget.password.value)
+
+		evt.currentTarget.reset()
+	},
+
 	render: function(){
 		return (
 				<div className="loginForm loginView">
-					<form>
+					<form onSubmit={this._getLogInInfo}>
 						<h3>Log In</h3>
 						<label>Enter Email Address</label>
 						<input type="email" name="email" placeholder="Email Address" />

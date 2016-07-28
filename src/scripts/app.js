@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import Backbone from 'backbone'
 import init from './init'
 import { User, PryrModel, PryrCollection } from './models/models'
-import MyPryrs from './views/myPryrs'
+import Pryrs from './views/pryrs'
 import PryrEditor from './views/pryrEditor'
 import LogIn from './views/login'
 import SignUp from './views/signup'
@@ -14,8 +14,8 @@ const app = function() {
  
   const PryrRouter = Backbone.Router.extend({
   	routes: {
-  		"/pryrs/read": "_showPryrs",
-  		"/pryrs/create": "_showPryrEditor",
+  		"pryrs/read": "_showPryrs",
+  		"pryrs/create": "_showPryrEditor",
   		"login": "_showLogin",
   		"signup": "_showSignUp",
   		"home": "_showHome",
@@ -23,9 +23,9 @@ const app = function() {
   	},
 
   	_showPryrs: function(){
-  		console.log('this is MyPryrs')
+  		console.log('this is Pryrs')
   		ReactDOM.render(<Pryrs />, document.querySelector('.container'))
-  	}
+  	},
 
   	_showPryrEditor: function(){
   		console.log('this is PryrEditor')
@@ -53,6 +53,12 @@ const app = function() {
 
   	initialize: function(){
   		Backbone.history.start()
+
+      // this.on('route', function(handlerName){
+      //   if(!User.getCurrentUser()){
+      //     location.hash = "signup"
+      //   }
+      // })
   	}
 
   })
