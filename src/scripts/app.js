@@ -24,6 +24,9 @@ const app = function() {
 
   	_showPryrs: function(){
   		console.log('this is Pryrs')
+      var newPryrColl = new PryrCollection()
+      newPryrColl.fetch()
+
   		ReactDOM.render(<Pryrs />, document.querySelector('.container'))
   	},
 
@@ -54,11 +57,12 @@ const app = function() {
   	initialize: function(){
   		Backbone.history.start()
 
-      // this.on('route', function(handlerName){
-      //   if(!User.getCurrentUser()){
-      //     location.hash = "signup"
-      //   }
-      // })
+      this.on('route', function(_showPryrs, _showPryrEditor){
+         if(!User.getCurrentUser()){
+          location.hash = "login"
+         }
+         
+      })
   	}
 
   })

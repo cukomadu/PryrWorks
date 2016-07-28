@@ -17,24 +17,24 @@ const PryrEditor = React.createClass({
 
 const PryrComposer = React.createClass({
 
-	_savePryrInfo: function(evt){
+	_getPryrInfo: function(evt){
 		evt.preventDefault()
 		
-		var newPryr = new PryrModel({
+		ACTIONS.savePryrModel({
 			title: evt.currentTarget.title.value,
 			to: evt.currentTarget.to.value,
 			from: User.getCurrentUser().email,
 			description: evt.currentTarget.description.value
 		})
 
-		ACTIONS.savePryrModel(newPryr)
 		evt.currentTarget.reset()
 	},
 
 	render: function(){
 		return (
 				<div className="PryrEditor PryrComposer">
-					<form onSubmit={this._savePryrInfo}>
+					<h3>Add A New Prayer</h3>
+					<form onSubmit={this._getPryrInfo}>
 						<label>Send To</label>
 						<input className="u-full-width" type="text" name="to" placeholder="Enter email address of the person you are praying for" />
 						<label>Prayer Title</label>

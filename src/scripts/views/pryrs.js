@@ -1,20 +1,21 @@
 import React from 'react'
 import $ from 'jquery'
 import Header from './header'
-import {MsgCollection} from '../models/models'
+import {PryrCollection} from '../models/models'
 import PRYR_STORE from '../pryrStore'
 import ACTIONS from '../actions'
 
-const PRYRS = React.createClass({
+const Pryrs = React.createClass({
 
 	getInitialState: function() {
-		return PRYR_STORE.getData()
+		return PRYR_STORE._getData()
 	},
 
 	componentWillMount: function(){
-		ACTION.fetchPryrs()
+		console.log('fetching prayers >> pryrs.js 15')
+		ACTIONS.fetchPryrs()
 		PRYR_STORE.on('updatePryrList', () => {
-			this.setState(PRYR_STORE.getData())
+			this.setState(PRYR_STORE._getData())
 		})
 	},
 
@@ -26,6 +27,7 @@ const PRYRS = React.createClass({
 		return (
 				<div className="Pryrs">
 					<Header />
+					<h3>Your Prayers</h3>
 					<MyPryrs pryrColl={this.state.collection}/>
 				</div>
 			)
@@ -35,12 +37,14 @@ const PRYRS = React.createClass({
 const MyPryrs = React.createClass({
 
 	_createPryr: function(pryrColl){
-		pryrColl.map((pryrmodel) => {
-			return <PryrItem key={pryrmodel.id} pryrmodel={pryrmodel} />
+		var JSXPryrModel = pryrColl.map((model) => {
+			return <PryrItem key={model.id} pryrmodel={model} />
 		})
+		return JSXPryrModel
 	},
 
 	render: function(){
+		console.log('this is pryr coll >>>', this.props.pryrColl)
 		return (
 				<div className="MyPryrs">
 					{this._createPryr(this.props.pryrColl)}
@@ -53,6 +57,7 @@ const PryrItem = React.createClass({
 	render: function(){
 		return (
 				<div className="PryrItem">
+					<span>Send To: {this.props.pryrmodel.get('to')}</span>
 					<span>Pray For: {this.props.pryrmodel.get('title')}</span>
 					<span>Details: {this.props.pryrmodel.get('description')}</span>
 				</div>
@@ -61,4 +66,4 @@ const PryrItem = React.createClass({
 })
 
 
-export default PRYRS
+export default Pryrs

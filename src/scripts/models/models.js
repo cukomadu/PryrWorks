@@ -7,13 +7,13 @@ import {app_name} from '../app'
 // ......................................
 
 const PryrModel = Backbone.Model.extend({
-	urlRoot: '/api/pryrs',
-	idAttribute: '_id'
+	urlRoot: "/api/pryrs",
+	idAttribute: "_id"
 })
 
 const PryrCollection = Backbone.Collection.extend({
 	model: PryrModel,
-	url: '/api/myPryrs'
+	url: "/api/pryrs"
 })
 
 

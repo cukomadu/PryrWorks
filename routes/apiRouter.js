@@ -11,8 +11,8 @@ let Pryr = require('../db/schema.js').Pryr
 //Create Pryr API Routes
 //----------------------
 
-apiRouter // write one
-.post('/pryrs', function(request, response){
+ // write one
+apiRouter.post('/pryrs', function(request, response){
   let newPryr = new Pryr(request.body)
   newPryr.save(function(err){
     if(err){
@@ -21,7 +21,9 @@ apiRouter // write one
     response.json(newPryr)
   })
 })
-.get('/pryrs', function(request, response){ // read all pryrs
+
+
+apiRouter.get('/pryrs', function(request, response){ // read all pryrs
   Pryr.find(request.query, function(err, records){
     if(err){
       return response.json(err)
@@ -29,21 +31,29 @@ apiRouter // write one
     response.json(records)
   })
 })
-.get('/myPryrs', function(req, res){ // read only logged user pryrs
-  if(request.user){
-    Pryr.find({to:request.user.email}, function(err, records){
-      if(err){
-        return response.json(err)
-      }
-      response.json(records)
-    })
-  }
-  else {
-    response.status(404).json({
-      error: 'No User Logged In'
-    })
-  }
-})
+
+
+apiRouter.get('/mypryrs', function(req, res){ // read only logged user pryrs
+   if(request.user.email){
+    //console.log('this is request.user', request.user)
+     Pryr.find({to:request.user.email}, function(err, records){
+       if (err) {
+         response.json({
+           error: 'record not found'
+         })
+         console.log(err)
+       }
+        else {
+         response.json(records)
+        }
+     })
+   }
+   else {
+     response.status(404).json({
+       error: 'No User Logged In'
+     })
+   }
+ })
 
 
 //-----------------------
