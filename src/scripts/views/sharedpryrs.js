@@ -1,11 +1,11 @@
 import React from 'react'
 import $ from 'jquery'
-import Header from './header'
-import {PryrCollection} from '../models/models'
+import PostLoginHeader from './postloginheader'
+import {User, PryrCollection} from '../models/models'
 import PRYR_STORE from '../pryrStore'
 import ACTIONS from '../actions'
 
-const Pryrs = React.createClass({
+const SharedPryrs = React.createClass({
 
 	getInitialState: function() {
 		return PRYR_STORE._getData()
@@ -13,7 +13,11 @@ const Pryrs = React.createClass({
 
 	componentWillMount: function(){
 		console.log('fetching prayers >> pryrs.js 15')
-		ACTIONS.fetchPryrs()
+		var personalPryrQuery = {
+		    from: User.getCurrentUser().email
+		  }
+
+		ACTIONS.fetchPryrsByQuery()
 		PRYR_STORE.on('updatePryrList', () => {
 			this.setState(PRYR_STORE._getData())
 		})
@@ -26,15 +30,15 @@ const Pryrs = React.createClass({
 	render: function(){
 		return (
 				<div className="Pryrs">
-					<Header />
-					<h3>Your Prayers</h3>
-					<MyPryrs pryrColl={this.state.collection}/>
+					<PostLoginHeader />
+					<h3>Prayers <span className="HeadingFromMe">From Me => To Others</span></h3>
+					<FromMePryrs pryrColl={this.state.pryrCollection}/>
 				</div>
 			)
 	}
 })
 
-const MyPryrs = React.createClass({
+const FromMePryrs = React.createClass({
 
 	_createPryr: function(pryrColl){
 		var JSXPryrModel = pryrColl.map((model) => {
@@ -56,14 +60,15 @@ const MyPryrs = React.createClass({
 const PryrItem = React.createClass({
 	render: function(){
 		return (
-				<div className="PryrItem">
-					<span>Send To: {this.props.pryrmodel.get('to')}</span>
-					<span>Pray For: {this.props.pryrmodel.get('title')}</span>
-					<span>Details: {this.props.pryrmodel.get('description')}</span>
+				<div className="FromMePrayers">
+					<p><strong className="labelFromMe">From Me:</strong> {this.props.pryrmodel.get('from')}</p>
+					<p><strong className="labelFromMe">To Other Users:</strong> {this.props.pryrmodel.get('to')}</p>
+					<p><strong className="labelFromMe">Prayer Title:</strong> {this.props.pryrmodel.get('title')}</p>
+					<p><strong className="labelFromMe">Prayer Details:</strong> {this.props.pryrmodel.get('description')}</p>
 				</div>
 			)
 	}
 })
 
 
-export default Pryrs
+export default SharedPryrs

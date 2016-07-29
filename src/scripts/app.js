@@ -3,8 +3,10 @@ import ReactDOM from 'react-dom'
 import Backbone from 'backbone'
 import init from './init'
 import { User, PryrModel, PryrCollection } from './models/models'
-import Pryrs from './views/pryrs'
+import SharedPryrs from './views/sharedpryrs'
 import PryrEditor from './views/pryrEditor'
+import PersonalPryrs from './views/personalpryrs'
+import DashBoard from './views/dashboard'
 import LogIn from './views/login'
 import SignUp from './views/signup'
 import Home from './views/home'
@@ -14,23 +16,32 @@ const app = function() {
  
   const PryrRouter = Backbone.Router.extend({
   	routes: {
-  		"pryrs/read": "_showPryrs",
-  		"pryrs/create": "_showPryrEditor",
+  		"pryrs/shared": "_showSharedPryrs",
+  		"pryrs/create": "_showEditor",
+      "pryrs/personal": "_showPersonalPryrs",
+      "pryrs/dashboard": "_showDashboard",
   		"login": "_showLogin",
   		"signup": "_showSignUp",
   		"home": "_showHome",
   		"*catchall": "_redirect"
   	},
 
-  	_showPryrs: function(){
+  	_showSharedPryrs: function(){
   		console.log('this is Pryrs')
-      var newPryrColl = new PryrCollection()
-      newPryrColl.fetch()
-
-  		ReactDOM.render(<Pryrs />, document.querySelector('.container'))
+  		ReactDOM.render(<SharedPryrs />, document.querySelector('.container'))
   	},
 
-  	_showPryrEditor: function(){
+    _showDashboard: function(){
+      console.log('this is Pryrs')
+      ReactDOM.render(<DashBoard />, document.querySelector('.container'))
+    },
+
+    _showPersonalPryrs: function(){
+      console.log('this is Pryrs')
+      ReactDOM.render(<PersonalPryrs />, document.querySelector('.container'))
+    },
+
+  	_showEditor: function(){
   		console.log('this is PryrEditor')
   		ReactDOM.render(<PryrEditor />, document.querySelector('.container'))
   	},
@@ -57,12 +68,12 @@ const app = function() {
   	initialize: function(){
   		Backbone.history.start()
 
-      this.on('route', function(_showPryrs, _showPryrEditor){
-         if(!User.getCurrentUser()){
-          location.hash = "login"
-         }
+      // this.on('route', function(_showPryrs, _showPryrEditor){
+      //    if(!User.getCurrentUser()){
+      //     location.hash = "login"
+      //    }
          
-      })
+      // })
   	}
 
   })

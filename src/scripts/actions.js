@@ -19,7 +19,7 @@ const ACTIONS = {
             (responseData) => {
                 alert(`User ${email} Logged In successfully!`)
                 console.log(responseData)
-                location.hash = 'pryrs/create' 
+                location.hash = 'pryrs/dashboard' 
             },
             (error) => {
                 alert('LogIn Unsuccessful')
@@ -39,13 +39,11 @@ const ACTIONS = {
 
     savePryrModel: function(pryrObj){
     	var newPryr = new PryrModel(pryrObj)
-        // var newPryrColl = new PryrCollection(PRYR_STORE.data.collection.models)
-        // newPryrColl.add(newPryr)
         newPryr.save().then(
             (responseData) => { 
                 console.log(responseData)
                 alert('Pryr saved successfully!')
-        		location.hash = 'pryrs/read'    
+        		location.hash = 'pryrs/dashboard'    
             },
             (error) => {
                 alert('Pryr did not save successfully!')
@@ -54,9 +52,30 @@ const ACTIONS = {
         )
     },
 
-    fetchPryrs: function(){
-        console.log('fetching prayers >> action.js 56')
-    	PRYR_STORE.data.collection.fetch()
+    updatePryrModel: function(model){
+
+    },
+
+    // fetchSharedPryrs: function(){
+    //     console.log('fetching prayers >> action.js 56')
+    // 	PRYR_STORE.data.sharedPryrCollection.fetch()
+    // },
+
+    // fetchPersonalPryrs: function(){
+    //     console.log('fetching prayers >> action.js 56')
+    //     PRYR_STORE.data.personalPryrCollection.fetch()
+    // },
+
+    // GET   /api/pryrs?answered=true&catefory=shared&to=584298rhwtnpi23333
+    //       queryObj === {answered: true, sharedPryr: 'shared', to: getCurrentUser().id}
+    //               
+    fetchPryrsByQuery: function(queryObj){
+        // $.getJSON('/api/pryrs?answered=true&catefory=shared&to=584298rhwtnpi23333')
+
+        PRYR_STORE.data.pryrCollection.fetch({
+            data: queryObj
+        })
+
     }
 }
 

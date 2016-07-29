@@ -5,7 +5,10 @@ import { PryrCollection } from './models/models'
 const PRYR_STORE = _.extend(Backbone.Events, {
 
 	data: {
-		collection: new PryrCollection()
+		pryrCollection: new PryrCollection(),
+		// ------
+		// personalPryrCollection: new PersonalPryrCollection(),
+		// sharedPryrCollection: new SharedPryrCollection(),
 	},
 
 	_emitChange: function(){
@@ -17,7 +20,10 @@ const PRYR_STORE = _.extend(Backbone.Events, {
 	},
 
 	initialize: function(){
-		this.data.collection.on('sync update', this._emitChange.bind(this))
+		this.data.pryrCollection.on('sync update', this._emitChange.bind(this))
+		
+		// this.data.personalPryrCollection.on('sync update', this._emitChange.bind(this))
+		// this.data.sharedPryrCollection.on('sync update', this._emitChange.bind(this))
 	}
 })
 

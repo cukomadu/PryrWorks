@@ -8,10 +8,67 @@
 	text-align: center;
 } */
 
+$orange: #f78a4c;
+$blue: #0192B5;
+$white: #ffffff;
+$lightgrey: #aaaaaa;
+
+
 .button{
 	margin: 2%;
+	font-size: 14px;
+}
+
+.actiontome {
+	color: #ffffff;
+	background: $blue;
+}
+
+.actionfromme {
+	color: #ffffff;
+	background: $orange;
 }
 
 button {
 	margin: 2%;
+}
+
+a {
+	text-decoration: none;
+}
+
+.hide {
+	display: none;
+}
+
+.isSelected{
+	background: $orange;
+}
+
+.ToMePrayers {
+	border: 1px solid $lightgrey;
+	margin: 5% auto;
+}
+
+.FromMePrayers {
+	border: 1px solid $lightgrey;
+	margin: 5% auto;
+}
+
+.labelToMe {
+	color: $blue;
+	font-size: 14px;
+}
+
+.labelFromMe {
+	color: $blue;
+	font-size: 14px;
+}
+
+.HeadingFromMe {
+	color: $orange;
+}
+
+.HeadingToMe {
+	color: $blue;
 }

@@ -33,23 +33,25 @@ apiRouter.get('/pryrs', function(request, response){ // read all pryrs
 })
 
 
-apiRouter.get('/mypryrs', function(req, res){ // read only logged user pryrs
-   if(request.user.email){
+apiRouter.get('/myPryrs', function(req, res){ // read only logged user pryrs
+   if(req.user){
     //console.log('this is request.user', request.user)
-     Pryr.find({to:request.user.email}, function(err, records){
+     req.body
+
+     Pryr.find({to:req.user.email}, function(err, records){
        if (err) {
-         response.json({
+         res.json({
            error: 'record not found'
          })
          console.log(err)
        }
         else {
-         response.json(records)
+         res.json(records)
         }
      })
    }
    else {
-     response.status(404).json({
+     res.status(404).json({
        error: 'No User Logged In'
      })
    }
