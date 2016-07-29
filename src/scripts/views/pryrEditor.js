@@ -28,50 +28,46 @@ const PryrComposer = React.createClass({
 		evt.preventDefault()
 		
 		ACTIONS.savePryrModel({
-			title: evt.currentTarget.title.value,
-			to: evt.currentTarget.to.value,
-			// this.state.category === 'mypryr' ? 
-			//     User.getCurrentUser().email  :
-			//     evt.currentTarget.to.value
-			
+			to: this.state.category === "toMe" ? User.getCurrentUser().email  : evt.currentTarget.to.value,
 			from: User.getCurrentUser().email,
+			title: evt.currentTarget.title.value,
 			description: evt.currentTarget.description.value
 		})
 
 		evt.currentTarget.reset()
 	},
 
-	_myPryrButton: function(evt){
+	_toMeButton: function(evt){
 		evt.preventDefault()
 		this.setState({
-			category: 'mypryr'
+			category: 'toMe'
 		})
 	},
 
-	_sharedButton: function(evt){
+	_fromMeButton: function(evt){
 		evt.preventDefault()
 		this.setState({
-			category: 'sharedpryr'
+			category: 'fromMepryr'
 		})
 	},
 
 	render: function(){
 		var formClass = 'hide',
-			myPryrClass = '',
-			sharedPryrClass = '',
+			toMeClass = '',
+			fromMePryrClass = '',
 			classNameForSendTo = '',
-			sharedButtonClass = '',
-			myPryrButtonClass = ''
+			fromMeButtonClass = '',
+			toMeButtonClass = ''
 
-		 if(this.state.category === 'mypryr'){
+		 if(this.state.category === 'toMe'){
 		 	classNameForSendTo = 'hide'
 		 	formClass = ''
-		 	myPryrButtonClass = 'isSelected'
+		 	toMeButtonClass = 'isSelected'
 		 }
-		 if(this.state.category === 'sharedpryr'){
+		 if(this.state.category === 'fromMepryr'){
 		 	classNameForSendTo = ''
 		 	formClass = ''
-		 	sharedButtonClass = 'isSelected'
+		 	fromMeButtonClass = 'isSelected'
 		 }
 
 		
@@ -79,8 +75,8 @@ const PryrComposer = React.createClass({
 				<div className="PryrEditor PryrComposer">
 					<h3>Add A New Prayer</h3>
 					<label><strong className="labelToMe">Who Are You Praying For?</strong></label>
-					<button className={myPryrButtonClass} onClick={this._myPryrButton}>Me: To Me</button>
-					<button className={sharedButtonClass} onClick={this._sharedButton}>Others Users: From Me</button>
+					<button className={toMeButtonClass} onClick={this._toMeButton}>Me: To Me</button>
+					<button className={fromMeButtonClass} onClick={this._fromMeButton}>Others Users: From Me</button>
 					
 					<form className={formClass} onSubmit={this._getPryrInfo}>
 						<hr />

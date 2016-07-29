@@ -26,10 +26,10 @@ const PryrCollection = Backbone.Collection.extend({
 	// }
 })
 
-const SharedPryrCollection = Backbone.Collection.extend({
-	model: PryrModel,
-	url: "/api/myPryrs"
-})
+// const SharedPryrCollection = Backbone.Collection.extend({
+// 	model: PryrModel,
+// 	url: "/api/myPryrs"
+// })
 
 
 

@@ -13,11 +13,11 @@ const PersonalPryrs = React.createClass({
 
 	componentWillMount: function(){
 		console.log('fetching prayers >> pryrs.js 15')
-		 var personalPryrQuery = {
+		var toMePrayerQuery = {
 			to: User.getCurrentUser().email
-		  }
+		}
 		
-		ACTIONS.fetchPryrsByQuery(personalPryrQuery)
+		ACTIONS.fetchPryrsByQuery(toMePrayerQuery)
 
 		// ACTIONS.fetchPersonalPryrs()
 		PRYR_STORE.on('updatePryrList', () => {
@@ -50,7 +50,7 @@ const ToMePryrs = React.createClass({
 	},
 
 	render: function(){
-		console.log('this is pryr coll >>>', this.props.pryrColl)
+		//console.log('this is pryr coll >>>', this.props.pryrColl)
 		return (
 				<div className="MyPryrs">
 					{this._createPryr(this.props.pryrColl)}
@@ -60,6 +60,15 @@ const ToMePryrs = React.createClass({
 })
 
 const PryrItem = React.createClass({
+
+	_toggleAnswered: function(){
+		console.log('answered status pryrs line 65', this.props.pryrmodel.get('answered'))
+		var clickedModelId = this.props.pryrmodel.id
+		console.log(clickedModelId)
+		
+		ACTIONS.updatePryrModel(clickedModelId)
+	},
+
 	render: function(){
 		return (
 				<div className="ToMePrayers">
@@ -67,6 +76,8 @@ const PryrItem = React.createClass({
 					<p><strong className="labelToMe">From Me / From Other Users:</strong> {this.props.pryrmodel.get('from')}</p>
 					<p><strong className="labelToMe">Prayer Title:</strong> {this.props.pryrmodel.get('title')}</p>
 					<p><strong className="labelToMe">Prayer Details:</strong> {this.props.pryrmodel.get('description')}</p>
+					<span className="HeadingFromMe">Answered?</span>
+					<input type="checkbox" name="answered" onClick={this._toggleAnswered} />
 				</div>
 			)
 	}

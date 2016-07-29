@@ -13,11 +13,12 @@ const SharedPryrs = React.createClass({
 
 	componentWillMount: function(){
 		console.log('fetching prayers >> pryrs.js 15')
-		var personalPryrQuery = {
+		var fromMePrayerQuery = {
 		    from: User.getCurrentUser().email
-		  }
+		}
 
-		ACTIONS.fetchPryrsByQuery()
+		ACTIONS.fetchPryrsByQuery(fromMePrayerQuery)
+		
 		PRYR_STORE.on('updatePryrList', () => {
 			this.setState(PRYR_STORE._getData())
 		})

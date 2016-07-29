@@ -33,29 +33,21 @@ apiRouter.get('/pryrs', function(request, response){ // read all pryrs
 })
 
 
-apiRouter.get('/myPryrs', function(req, res){ // read only logged user pryrs
-   if(req.user){
-    //console.log('this is request.user', request.user)
-     req.body
+apiRouter.put('/pryrs/:_id', function(request, response){
+  var modelId = request.params._id
+  console.log('Incoming -- ', request.body)
+  Pryr.findByIdAndUpdate(modelId, request.body, {new: true}, function(err, record){
+    console.log('Record -- ', record)
 
-     Pryr.find({to:req.user.email}, function(err, records){
-       if (err) {
-         res.json({
-           error: 'record not found'
-         })
-         console.log(err)
-       }
-        else {
-         res.json(records)
-        }
-     })
-   }
-   else {
-     res.status(404).json({
-       error: 'No User Logged In'
-     })
-   }
- })
+    if(err){
+      return response.json(err)
+    }
+    else {
+      console.log('model updated', record)
+      response.json(record)
+    }
+  })
+})
 
 
 //-----------------------

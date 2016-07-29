@@ -1,6 +1,6 @@
 import React from 'react'
 import ACTIONS from '../actions'
-import Header from './header'
+import Header from './preloginheader'
 
 const SignUp = React.createClass({
 	render: function(){

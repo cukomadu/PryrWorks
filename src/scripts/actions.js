@@ -52,25 +52,45 @@ const ACTIONS = {
         )
     },
 
-    updatePryrModel: function(model){
+    // if(selectedModel.get('status') === 'undone'){
+    //             selectedModel.set({
+    //                 status: 'done'
+    //             })
+
+    //         } else {
+    //             selectedModel.set({
+    //                 status: 'undone'
+    //             })
+    //         }
+
+    //         selectedModel.save(null,{
+    //             silent:true
+    //         })
+
+    updatePryrModel: function(modelId){
+        let pryrUpdate = PRYR_STORE.data.pryrCollection.get(modelId)
+         
+            //Break code in line 64 down
+            pryrUpdate.set({answered: pryrUpdate.get('answered') ? false : true})
+            pryrUpdate.save().then((responseData) => {
+                console.log(responseData)
+                alert('Pryr updated successfully')    
+                },
+                
+                (error) => {
+                    alert('Pryr update not successfully')
+                    console.log(error)
+                }   
+            )
+
+            PRYR_STORE.data.pryrCollection.trigger('update')
+            console.log('this is pryr collection', PRYR_STORE.data.pryrCollection.models)
+            console.log('answered status actions line 72', pryrUpdate.get('answered'))
 
     },
 
-    // fetchSharedPryrs: function(){
-    //     console.log('fetching prayers >> action.js 56')
-    // 	PRYR_STORE.data.sharedPryrCollection.fetch()
-    // },
-
-    // fetchPersonalPryrs: function(){
-    //     console.log('fetching prayers >> action.js 56')
-    //     PRYR_STORE.data.personalPryrCollection.fetch()
-    // },
-
-    // GET   /api/pryrs?answered=true&catefory=shared&to=584298rhwtnpi23333
-    //       queryObj === {answered: true, sharedPryr: 'shared', to: getCurrentUser().id}
-    //               
+                  
     fetchPryrsByQuery: function(queryObj){
-        // $.getJSON('/api/pryrs?answered=true&catefory=shared&to=584298rhwtnpi23333')
 
         PRYR_STORE.data.pryrCollection.fetch({
             data: queryObj
