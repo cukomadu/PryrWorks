@@ -14,24 +14,7 @@ const PryrModel = Backbone.Model.extend({
 const PryrCollection = Backbone.Collection.extend({
 	model: PryrModel,
 	url: "/api/pryrs"
-
-	// initialize: function(options) {	
-	// 	 = new PryrCollection({
-	// 		toMe: true
-	// 	})
-
-	// 	if (options.toMe) {
-	// 		this.url = '/api/myPryrs'
-	// 	}
-	// }
 })
-
-// const SharedPryrCollection = Backbone.Collection.extend({
-// 	model: PryrModel,
-// 	url: "/api/myPryrs"
-// })
-
-
 
 
 

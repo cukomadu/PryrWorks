@@ -12,7 +12,7 @@ const SharedPryrs = React.createClass({
 	},
 
 	componentWillMount: function(){
-		console.log('fetching prayers >> pryrs.js 15')
+		//console.log('fetching prayers >> pryrs.js 15')
 		var fromMePrayerQuery = {
 		    from: User.getCurrentUser().email
 		}
@@ -49,7 +49,7 @@ const FromMePryrs = React.createClass({
 	},
 
 	render: function(){
-		console.log('this is pryr coll >>>', this.props.pryrColl)
+		//console.log('this is pryr coll >>>', this.props.pryrColl)
 		return (
 				<div className="MyPryrs">
 					{this._createPryr(this.props.pryrColl)}
@@ -59,6 +59,12 @@ const FromMePryrs = React.createClass({
 })
 
 const PryrItem = React.createClass({
+
+	_deletePryr: function(){
+		var clickedModelId = this.props.pryrmodel.id
+		ACTIONS.deletePryrModel(clickedModelId)
+	},
+
 	render: function(){
 		return (
 				<div className="FromMePrayers">
@@ -66,6 +72,7 @@ const PryrItem = React.createClass({
 					<p><strong className="labelFromMe">To Other Users:</strong> {this.props.pryrmodel.get('to')}</p>
 					<p><strong className="labelFromMe">Prayer Title:</strong> {this.props.pryrmodel.get('title')}</p>
 					<p><strong className="labelFromMe">Prayer Details:</strong> {this.props.pryrmodel.get('description')}</p>
+					<button onClick={this._deletePryr}>X</button>
 				</div>
 			)
 	}

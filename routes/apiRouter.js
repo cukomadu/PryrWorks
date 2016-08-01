@@ -11,8 +11,8 @@ let Pryr = require('../db/schema.js').Pryr
 //Create Pryr API Routes
 //----------------------
 
- // write one
-apiRouter.post('/pryrs', function(request, response){
+ 
+apiRouter.post('/pryrs', function(request, response){ // create one pryr record
   let newPryr = new Pryr(request.body)
   newPryr.save(function(err){
     if(err){
@@ -23,7 +23,7 @@ apiRouter.post('/pryrs', function(request, response){
 })
 
 
-apiRouter.get('/pryrs', function(request, response){ // read all pryrs
+apiRouter.get('/pryrs', function(request, response){ // read all pryr records
   Pryr.find(request.query, function(err, records){
     if(err){
       return response.json(err)
@@ -33,7 +33,7 @@ apiRouter.get('/pryrs', function(request, response){ // read all pryrs
 })
 
 
-apiRouter.put('/pryrs/:_id', function(request, response){
+apiRouter.put('/pryrs/:_id', function(request, response){ // update one pryr record
   var modelId = request.params._id
   console.log('Incoming -- ', request.body)
   Pryr.findByIdAndUpdate(modelId, request.body, {new: true}, function(err, record){
@@ -49,6 +49,17 @@ apiRouter.put('/pryrs/:_id', function(request, response){
   })
 })
 
+apiRouter.delete('/pryrs/:_id', function(request, response){
+  Pryr.remove({_id: request.params._id}, (err) => {
+    if(err) {
+      return response.json(err)
+    }
+    response.json({
+      msg: `record ${request.params._id} deleted successfully!`,
+      _id: request.params._id
+    })
+  })
+})
 
 //-----------------------
 // Create User API Routes

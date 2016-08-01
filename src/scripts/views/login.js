@@ -17,7 +17,7 @@ const LoginForm = React.createClass({
 
 	_getLogInInfo: function(evt){
 		evt.preventDefault()
-		console.log(evt.currentTarget.email.value, '>>>>', evt.currentTarget.password.value)
+		//console.log(evt.currentTarget.email.value, '>>>>', evt.currentTarget.password.value)
 		
 		ACTIONS.logUserIn(evt.currentTarget.email.value, evt.currentTarget.password.value)
 

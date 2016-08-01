@@ -5,7 +5,7 @@ import PRYR_STORE from './pryrStore'
 const ACTIONS = {
 
 	signUserUp: function(userObj){
-		console.log(userObj)
+		//console.log(userObj)
 		User.register(userObj).then( () => ACTIONS.logUserIn(userObj.email, userObj.password),
             (error) => {
                 alert('SignUp Unsuccessful')
@@ -52,21 +52,6 @@ const ACTIONS = {
         )
     },
 
-    // if(selectedModel.get('status') === 'undone'){
-    //             selectedModel.set({
-    //                 status: 'done'
-    //             })
-
-    //         } else {
-    //             selectedModel.set({
-    //                 status: 'undone'
-    //             })
-    //         }
-
-    //         selectedModel.save(null,{
-    //             silent:true
-    //         })
-
     updatePryrModel: function(modelId){
         let pryrUpdate = PRYR_STORE.data.pryrCollection.get(modelId)
          
@@ -84,18 +69,25 @@ const ACTIONS = {
             )
 
             PRYR_STORE.data.pryrCollection.trigger('update')
-            console.log('this is pryr collection', PRYR_STORE.data.pryrCollection.models)
-            console.log('answered status actions line 72', pryrUpdate.get('answered'))
+            //console.log('this is pryr collection', PRYR_STORE.data.pryrCollection.models)
+           // console.log('answered status actions line 72', pryrUpdate.get('answered'))
 
     },
-
-                  
+             
     fetchPryrsByQuery: function(queryObj){
-
         PRYR_STORE.data.pryrCollection.fetch({
             data: queryObj
         })
+    },
 
+    updateCurrentView: function(clickedView){
+        console.log('this is clickedView from ACTIONS.js', clickedView)
+       PRYR_STORE._set('currentView', clickedView)
+    },
+
+    deletePryrModel: function(modelId){
+        let pryrModel = PRYR_STORE.data.pryrCollection.get(modelId)
+        pryrModel.destroy()
     }
 }
 

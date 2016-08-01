@@ -7,7 +7,7 @@ import Header from './preloginheader'
 const Home = React.createClass({
 
 	render: function(){
-		console.log('renderin home view')
+		//console.log('renderin home view')
 		return(
 				<div>
 					<Header />
