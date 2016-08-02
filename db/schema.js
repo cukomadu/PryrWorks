@@ -28,7 +28,8 @@ const pryrSchema = new Schema({
 	reply_to: {type:String},
 	description: {type: String, required: true},
 	category: {type: String},
-	answered: {type: Boolean, default: false}
+	answered: {type: Boolean, default: false},
+  answeredStatus: {type: Boolean, default: false}
 
 })
 

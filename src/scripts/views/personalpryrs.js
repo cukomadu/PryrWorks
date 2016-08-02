@@ -24,9 +24,6 @@ const PersonalPryrs = React.createClass({
 		PRYR_STORE.on('updatePryrList', () => {
 			this.setState(PRYR_STORE._getData())
 		})
-
-		console.log('this is collection on state line 28', this.state.pryrCollection)
-		
 	},
 
 	componentWillUnmount: function(){
@@ -36,28 +33,36 @@ const PersonalPryrs = React.createClass({
 
 	render: function(){
 
-		let collectionToPassDown //= this.state.pryrCollection
-		console.log('this is state currentView line 40', this.state.currentView)
-		//console.log('this is state currentView line 49', this.state.pryrCollection)
-		console.log('this is collection on state line 42', collectionToPassDown)
-
+		let collectionToPassDown 
+		
 		if(this.state.currentView === "mypryrlist"){
-			collectionToPassDown = this.state.pryrCollection.where({from: User.getCurrentUser().email})
-			console.log('this is collection on state line 46', collectionToPassDown)
+			collectionToPassDown = this.state.pryrCollection.where({
+				from: User.getCurrentUser().email, answered: false
+			})
 		} 
+		
 		else if(this.state.currentView === "answered"){
-			collectionToPassDown = this.state.pryrCollection.where({answered: true})
-			console.log('this is collection on state line 50', collectionToPassDown)
+			collectionToPassDown = this.state.pryrCollection.where({
+				answered: true
+			})
 		}
+		
 		else if(this.state.currentView === "pryrstomefromothers"){
-			collectionToPassDown = this.state.pryrCollection.where({from: !User.getCurrentUser().email})
-			console.log('this is collection on state line 54', collectionToPassDown)
+
+			collectionToPassDown = this.state.pryrCollection.filter((model) => {
+				if((model.get('from') !== User.getCurrentUser().email) && (model.get('answered') === false) ){
+					return true
+				}
+			})
 		}
+		
 		else {
-			collectionToPassDown = this.state.pryrCollection
-			console.log('this is collection on state line 58', collectionToPassDown)
+			collectionToPassDown = this.state.pryrCollection.where({
+				answered: false
+			})
+			
 		}
-		console.log('this is state currentView line 60', this.state.currentView)
+		
 
 		return (
 				<div className="Pryrs">
@@ -87,14 +92,17 @@ const NavBar = React.createClass({
 						value="allpryrstome"
 						onClick={this._getCurrentView}
 						>All Prayers To Me</button>
+						
 						<button  
 						value="mypryrlist"
 						onClick={this._getCurrentView}
 						>My Prayer List </button>
+						
 						<button 
 						value="pryrstomefromothers"
 						onClick={this._getCurrentView}
 						>Prayers To Me from Other</button>
+						
 						<button 
 						value="answered"
 						onClick={this._getCurrentView}
@@ -122,68 +130,6 @@ const ToMePryrs = React.createClass({
 				</div>
 			)
 	}
-
-	// _createPryr: function(currentView, pryrColl){
-	// 	console.log('>>>> line 112', this.props.currentView)
-	// 	console.log('>>>> line 113', this.props.pryrColl)
-	//  	switch(currentView){
-	// 		case "mypryrlist": 
-	// 			var JSXPM = pryrColl.filter((model) => {
- //                    if(model.get('from') === User.getCurrentUser().email){
- //                        return true
- //                    } else {
- //                        return false
- //                    }
- //                })
- //                .map((model) => {
- //                    return <PryrItem key={model.id} pryrmodel={model} />
- //                })
- //                return JSXPM
-	// 			break
-
-	// 		case "answered":
-	// 			var JSXPM = pryrColl.filter((model) =>{
-	// 				if(model.get('answered') === true){
-	// 					return true
-	// 				}
-	// 				return false
-	// 			})
-	// 			.map((model) => {
-	// 				return <PryrItem key={model.id} pryrmodel={model} />
-	// 			})
-	// 			return JSXPM
-	// 			break
-
-	// 		case "pryrstomefromothers":
-	// 			var JSXPM = pryrColl.filter((model) => {
-	// 				if(model.get('from') !== User.getCurrentUser().email){
-	// 					return true
-	// 				}
-	// 				return false
-	// 			})
-	// 			.map((model) => {
-	// 				return <PryrItem key={model.id} pryrmodel={model} />
-	// 			})
-	// 			return JSXPM
-	// 			break
-
-	// 		default:
-	// 			var JSXPM = pryrColl.map((model) => {
-	// 				return <PryrItem key={model.id} pryrmodel={model} />
-	// 			})
-	// 			return JSXPM
-	// 	}	
-	// },
-
-	// render: function(){
-	// 	console.log('>>>> line 160', this.props.currentView)
-	// 	return (
-	// 			<div className="MyPryrs">
-	// 				{this._createPryr(this.props.currentView, this.props.pryrColl)}
-	// 			</div>
-	// 		)
-	// }
-
 })
 
 const PryrItem = React.createClass({
