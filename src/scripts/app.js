@@ -20,56 +20,43 @@ const app = function() {
   		"pryrs/create": "_showEditor",
       "pryrs/personal": "_showPersonalPryrs",
       "pryrs/dashboard": "_showDashboard",
-     // "pryrs/answered": "_showAnswered",
   		"login": "_showLogin",
   		"signup": "_showSignUp",
-  		"home": "_showHome"//,
-  		//"*catchall": "_redirect"
+  		"home": "_showHome",
+  		"*catchall": "_redirect"
   	},
 
-    // _showAnswered: function(){
-    //   console.log('this is Answered Pryrs')
-    //   ReactDOM.render(<Answered />, document.querySelector('.container'))
-    // },
-
   	_showSharedPryrs: function(){
-  		//console.log('this is Pryrs')
   		ReactDOM.render(<SharedPryrs />, document.querySelector('.container'))
   	},
 
     _showDashboard: function(){
-      //console.log('this is Pryrs')
       ReactDOM.render(<DashBoard />, document.querySelector('.container'))
     },
 
     _showPersonalPryrs: function(){
-     // console.log('this is Pryrs')
       ReactDOM.render(<PersonalPryrs />, document.querySelector('.container'))
     },
 
   	_showEditor: function(){
-  		//console.log('this is PryrEditor')
   		ReactDOM.render(<PryrEditor />, document.querySelector('.container'))
   	},
 
   	_showLogin: function(){
-  	//	console.log('this is Login')
   		ReactDOM.render(<LogIn />, document.querySelector('.container'))
   	},
 
   	_showSignUp: function(){
-  		//console.log('this is Sign Up')
   		ReactDOM.render(<SignUp />, document.querySelector('.container'))
   	},
 
   	_showHome: function(){
-  	//	console.log('this is Home')
   		ReactDOM.render(<Home />, document.querySelector('.container'))
   	},
 
-  	// _redirect: function(){
-  	// 	location.hash = "home"
-  	// },
+  	_redirect: function(){
+  		location.hash = "home"
+  	},
 
   	initialize: function(){
   		Backbone.history.start()

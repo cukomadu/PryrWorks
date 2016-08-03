@@ -17,7 +17,6 @@ const LoginForm = React.createClass({
 
 	_getLogInInfo: function(evt){
 		evt.preventDefault()
-		//console.log(evt.currentTarget.email.value, '>>>>', evt.currentTarget.password.value)
 		
 		ACTIONS.logUserIn(evt.currentTarget.email.value, evt.currentTarget.password.value)
 
@@ -29,11 +28,11 @@ const LoginForm = React.createClass({
 				<div className="loginForm loginView">
 					<form onSubmit={this._getLogInInfo}>
 						<h3>Log In</h3>
-						<label>Enter Email Address</label>
+						<label className="email">Enter Email Address</label>
 						<input type="email" name="email" placeholder="Email Address" />
-						<label>Enter Password</label>
+						<label className="password">Enter Password</label>
 						<input type="password" name="password" placeholder="Password" />
-						<button type="submit">Log In</button>
+						<button className="LogIn" type="submit">Log In</button>
 					</form>
 				</div>
 			)

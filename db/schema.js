@@ -29,8 +29,8 @@ const pryrSchema = new Schema({
 	description: {type: String, required: true},
 	category: {type: String},
 	answered: {type: Boolean, default: false},
-  answeredStatus: {type: Boolean, default: false}
-
+  answeredStatus: {type: Boolean, default: false},
+  viewStatus: {type: Boolean, default: false}
 })
 
 module.exports = {

@@ -5,11 +5,10 @@ import PRYR_STORE from './pryrStore'
 const ACTIONS = {
 
 	signUserUp: function(userObj){
-		//console.log(userObj)
 		User.register(userObj).then( () => ACTIONS.logUserIn(userObj.email, userObj.password),
             (error) => {
                 alert('SignUp Unsuccessful')
-                console.log(error)
+                //console.log(error)
             }
         )
 	},
@@ -18,12 +17,12 @@ const ACTIONS = {
         User.login(email, password).then(
             (responseData) => {
                 alert(`User ${email} Logged In successfully!`)
-                console.log(responseData)
+                //console.log(responseData)
                 location.hash = 'pryrs/dashboard' 
             },
             (error) => {
                 alert('LogIn Unsuccessful')
-                console.log(error)
+               // console.log(error)
             }
         )
     },
@@ -41,13 +40,13 @@ const ACTIONS = {
     	var newPryr = new PryrModel(pryrObj)
         newPryr.save().then(
             (responseData) => { 
-                console.log(responseData)
+                //console.log(responseData)
                 alert('Pryr saved successfully!')
         		location.hash = 'pryrs/dashboard'    
             },
             (error) => {
                 alert('Pryr did not save successfully!')
-                console.log(error)
+                //console.log(error)
             }
         )
     },
@@ -55,23 +54,55 @@ const ACTIONS = {
     updatePryrModel: function(modelId){
         let pryrUpdate = PRYR_STORE.data.pryrCollection.get(modelId)
          
-            //Break code in line 64 down
-            pryrUpdate.set({answered: pryrUpdate.get('answered') ? false : true})
+            pryrUpdate.set({
+                answered: pryrUpdate.get('answered') ? false : true,
+                answeredStatus: pryrUpdate.get('answeredStatus') ? false : true
+            })
             pryrUpdate.save().then((responseData) => {
-                console.log(responseData)
+                //console.log(responseData)
                 alert('Pryr updated successfully')    
                 },
                 
                 (error) => {
                     alert('Pryr update not successfully')
-                    console.log(error)
+                    //console.log(error)
                 }   
             )
 
             PRYR_STORE.data.pryrCollection.trigger('update')
-            //console.log('this is pryr collection', PRYR_STORE.data.pryrCollection.models)
-           // console.log('answered status actions line 72', pryrUpdate.get('answered'))
+    },
 
+    updateViewedStatus: function(modelId){
+        let pryrViewedStatus = PRYR_STORE.data.pryrCollection.get(modelId)
+
+            pryrViewedStatus.set({
+                viewStatus: true
+            })
+
+            pryrViewedStatus.save().then((responseData) => {
+                //console.log(responseData)
+                alert('Pryr ViewStatus updated successfully')    
+                },
+                
+                (error) => {
+                    alert('Pryr ViewStatus update not successfully')
+                    //console.log(error)
+                }   
+            )
+        
+        PRYR_STORE.data.pryrCollection.trigger('update')
+    
+    },
+
+    updateStateProps: function(buttonState, pDisplay){
+        if(pDisplay === 'none'){
+            PRYR_STORE._set('pDisplay', 'block')
+            PRYR_STORE._set('buttonState', '-')
+        } 
+        else {
+            PRYR_STORE._set('pDisplay', 'none')
+            PRYR_STORE._set('buttonState', '+')
+        }
     },
              
     fetchPryrsByQuery: function(queryObj){
@@ -81,7 +112,6 @@ const ACTIONS = {
     },
 
     updateCurrentView: function(clickedView){
-        console.log('this is clickedView from ACTIONS.js', clickedView)
        PRYR_STORE._set('currentView', clickedView)
     },
 

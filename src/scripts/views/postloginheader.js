@@ -18,9 +18,9 @@ const NavBar = React.createClass({
 		return (
 				<div className="NavBar aLinks">
 					<a className="button actiontome" 
-					href="#pryrs/personal">{`Prayers To Me <= From Others`}</a>
+					href="#pryrs/personal">{`My Prayers`}</a>
 					<a className="button actionfromme" 
-					href="#pryrs/shared">Prayers From Me => To Others</a>
+					href="#pryrs/shared">Shared Prayers</a>
 					<a className="button" href="#pryrs/create">Add New Prayer</a>
 					<a className="button" href="#" onClick={ACTIONS.logUserOut} >Log Out</a>
 				</div>

@@ -2,18 +2,19 @@ import React from 'react'
 import Header from './preloginheader'
 
 //<h2>TRACK. PRAYER. BETTER.</h2>
-//<p>The world's leading prayer organizer, tracker, & effectiveness platform</p>
-
+//
 const Home = React.createClass({
 
 	render: function(){
-		//console.log('renderin home view')
 		return(
 				<div>
 					<Header />
-					<div>
-						<h3>Welcome Home!</h3>
-						<p>Start Tracking Your Prayers</p>
+					<div className="Home">
+
+						<h2>PRAY. SHARE. TRACK.</h2>	
+						<p>The world's leading prayer organizer, sharing and tracking platform</p>
+						<a className="button button-primary SignUp" href="#signup">Get Started</a>
+
 					</div>
 					<div>
 					</div>

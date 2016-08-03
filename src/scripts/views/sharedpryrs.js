@@ -59,19 +59,39 @@ const FromMePryrs = React.createClass({
 })
 
 const PryrItem = React.createClass({
+	
 
 	_deletePryr: function(){
 		var clickedModelId = this.props.pryrmodel.id
 		ACTIONS.deletePryrModel(clickedModelId)
 	},
 
+	_setStatus:function(){
+		var answeredStatusClass
+
+		if(this.props.pryrmodel.get('answeredStatus') === true){
+			answeredStatusClass = "Yes"
+			return <p className={answeredStatusClass}>"Yes"</p>
+		}
+			answeredStatusClass = "notYet"
+			return <p className={answeredStatusClass}>"Not Yet"</p>		
+	},
+
 	render: function(){
+		console.log(this.props.pryrmodel)
+
 		return (
 				<div className="FromMePrayers">
 					<p><strong className="labelFromMe">From Me:</strong> {this.props.pryrmodel.get('from')}</p>
 					<p><strong className="labelFromMe">To Other Users:</strong> {this.props.pryrmodel.get('to')}</p>
 					<p><strong className="labelFromMe">Prayer Title:</strong> {this.props.pryrmodel.get('title')}</p>
 					<p><strong className="labelFromMe">Prayer Details:</strong> {this.props.pryrmodel.get('description')}</p>
+					<label>ANSWERED?{this._setStatus()}</label>
+					{/*<select name="FromMePrayers" defaultValue={this._setStatus()}>
+						<option disabled value="Pending">Pending</option>
+						<option disabled value="Yes">Yes</option>
+					</select>*/}
+
 					<button onClick={this._deletePryr}>X</button>
 				</div>
 			)

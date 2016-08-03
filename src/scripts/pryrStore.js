@@ -6,7 +6,9 @@ const PRYR_STORE = _.extend(Backbone.Events, {
 
 	data: {
 		pryrCollection: new PryrCollection(),
-		currentView: 'allpryrstome'
+		currentView: 'allpryrstome',
+		pDisplay: 'none',
+		buttonState: '+'
 	},
 
 	_emitChange: function(){
@@ -18,13 +20,11 @@ const PRYR_STORE = _.extend(Backbone.Events, {
 	},
 
 	_set: function(key, value){
-		console.log(key + ':' + value)
 		if(this.data[key] === undefined){
 			throw new Error('Key has no value assigned to it')
 		}
 			this.data[key] = value
 			this._emitChange()
-			console.log('>>>> store line 27', this.data)
 	},
 
 	initialize: function(){

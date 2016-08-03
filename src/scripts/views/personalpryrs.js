@@ -69,7 +69,8 @@ const PersonalPryrs = React.createClass({
 					<PostLoginHeader />
 					<h3>Prayers <span className="HeadingToMe">{`To Me <= From Others`}</span></h3>
 					<NavBar />
-					<ToMePryrs pryrColl={collectionToPassDown} />
+					<ToMePryrs pryrColl={collectionToPassDown} 
+					pDisplay={this.state.pDisplay} buttonState={this.state.buttonState}/>
 				</div>
 			)
 	}
@@ -117,7 +118,7 @@ const ToMePryrs = React.createClass({
 
 	_createPryr: function(pryrColl){
 		var JSXPryrModel = pryrColl.map((model) => {
-			return <PryrItem key={model.id} pryrmodel={model} />
+			return <PryrItem key={model.id} pryrmodel={model} modelDisplay={this.props.pDisplay} modelButtonState={this.props.buttonState}/>
 		})
 		return JSXPryrModel
 	},
@@ -134,6 +135,19 @@ const ToMePryrs = React.createClass({
 
 const PryrItem = React.createClass({
 
+	_toggleDisplay: function(){
+		console.log('buttonState', this.props.modelButtonState)
+		console.log('pDisplay', this.props.modelDisplay)
+
+		var pDisplay = this.props.modelDisplay,
+			buttonState = this.props.modelButtonState,
+			clickedModelId = this.props.pryrmodel.id
+
+		ACTIONS.updateViewedStatus(clickedModelId)
+
+		ACTIONS.updateStateProps(buttonState, pDisplay)
+	},
+
 	_toggleAnswered: function(){
 		//console.log('answered status pryrs line 65', this.props.pryrmodel.get('answered'))
 		var clickedModelId = this.props.pryrmodel.id
@@ -148,15 +162,22 @@ const PryrItem = React.createClass({
 	},
 
 	render: function(){
+		var styleObj = {
+			display: this.props.modelDisplay
+		}
+
 		return (
 				<div className="ToMePrayers">
 					<p><strong className="labelToMe">To Me:</strong> {this.props.pryrmodel.get('to')}</p>
-					<p><strong className="labelToMe">From Me / From Other Users:</strong> {this.props.pryrmodel.get('from')}</p>
-					<p><strong className="labelToMe">Prayer Title:</strong> {this.props.pryrmodel.get('title')}</p>
-					<p><strong className="labelToMe">Prayer Details:</strong> {this.props.pryrmodel.get('description')}</p>
-					<span className="HeadingFromMe">Answered?</span>
-					<input type="checkbox" name="answered" onClick={this._toggleAnswered} />
-					<button onClick={this._deletePryr}>X</button>
+					<button onClick={this._toggleDisplay} className="expand">{this.props.modelButtonState}</button>
+					<div style={styleObj}>
+						<p><strong className="labelToMe">From Me / From Other Users:</strong> {this.props.pryrmodel.get('from')}</p>
+						<p><strong className="labelToMe">Prayer Title:</strong> {this.props.pryrmodel.get('title')}</p>
+						<p><strong className="labelToMe">Prayer Details:</strong> {this.props.pryrmodel.get('description')}</p>
+						<span className="HeadingFromMe">Answered?</span>
+						<input type="checkbox" name="answered" onClick={this._toggleAnswered} />
+						<button onClick={this._deletePryr}>X</button>
+					</div>
 				</div>
 			)
 	}

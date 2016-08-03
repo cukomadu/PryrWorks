@@ -31,11 +31,11 @@ const SignUpForm = React.createClass({
 				<div className="signUpForm signUpView">
 					<form onSubmit={this._getSignUpInfo}>
 						<h3>Sign Up</h3>
-						<label>Enter Email Address</label>
+						<label className="email">Enter Email Address</label>
 						<input type="email" name="email" placeholder="Email Address" />
-						<label>Create Password</label>
+						<label className="password">Create Password</label>
 						<input type="password" name="password" placeholder="Password" />
-						<button type="submit">Sign Up</button>
+						<button className="SignUp" type="submit">Sign Up</button>
 					</form>
 				</div>
 			)
