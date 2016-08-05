@@ -28,7 +28,8 @@ const DashBoard = React.createClass({
 		return (
 				<div>
 					<PostLoginHeader />
-					<h3>Your Prayer Dashboard</h3>
+					<hr />
+					<h3>My Dashboard</h3>
 					<PryrSummary pryrColl={this.state.pryrCollection}/>
 				</div>
 			)
@@ -80,10 +81,10 @@ const PryrSummary = React.createClass({
 		})
 		var collLength = filteredColl.length
 		if(collLength < 2){
-			return <p>You Have <a href="#pryrs/personal">{collLength} New</a> Answered Prayer from My Prayers!</p>
+			return <p>You Have <a href="#pryrs/personal">{collLength} New</a> Answered Prayer in your Inbox!</p>
 		}
 		else {
-			return <p>You Have <a href="#pryrs/personal">{collLength} New</a> Answered Prayer from My Prayers!</p>
+			return <p>You Have <a href="#pryrs/personal">{collLength} New</a> Answered Prayer in your Inbox!</p>
 		}
 	},
 

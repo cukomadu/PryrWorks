@@ -8,6 +8,7 @@ const PryrEditor = React.createClass({
 		return (
 				<div>
 					<PostLoginHeader />
+					<hr />
 					<PryrComposer />
 				</div>
 			)
@@ -75,8 +76,8 @@ const PryrComposer = React.createClass({
 				<div className="PryrEditor PryrComposer">
 					<h3>Add A New Prayer</h3>
 					<label><strong className="labelToMe">Who Are You Praying For?</strong></label>
-					<button className={toMeButtonClass} onClick={this._toMeButton}>Me: To Me</button>
-					<button className={fromMeButtonClass} onClick={this._fromMeButton}>Others Users: From Me</button>
+					<button className={`${toMeButtonClass} editor`} onClick={this._toMeButton}>Me</button>
+					<button className={`${fromMeButtonClass}editor`} onClick={this._fromMeButton}>Others Users</button>
 					
 					<form className={formClass} onSubmit={this._getPryrInfo}>
 						<hr />

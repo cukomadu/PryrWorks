@@ -16,7 +16,7 @@ $lightgray: #e5e5e5;
 	background: $darkgrey;
 	//background: url('https://s19.postimg.org/w0m804383/backgroundimage.jpg');
 	background-size: cover;
-	color: $white;
+	color: $white; //!!!
 
 }
 
@@ -36,7 +36,17 @@ $lightgray: #e5e5e5;
 		#right {
 			color: $orange;
 		}
+		button {
+			background: $blue;
+			color: $blue;
+		}
 	
+}
+
+.Pryrs {
+	button {
+		color: $white;
+	}
 }
 
 //NavBar
@@ -44,10 +54,15 @@ $lightgray: #e5e5e5;
 	margin: 0 auto;
 	width: 800px;
 	position: relative;
+	font-size: 20px;
 
 	.button-primary {
-		background: $white;
+		//background: $white;
 		color: $blue;
+	}
+
+	.button {
+		color: $white;
 	}
 
 }
@@ -68,13 +83,13 @@ $lightgray: #e5e5e5;
 	}
 
 	.SignUp {
-		color: $white;
+		color: $darkgray;
 		background: $orange;
 	}
 }
 
 .loginForm {
-	color: $white;
+	color: $darkgray;
 	font-weight: 400;
 	font-size: 24px;
 	margin-top: 10%;
@@ -90,11 +105,12 @@ $lightgray: #e5e5e5;
 
 	input {
 		width: 30%;
+		color: $darkgray;
 
 	}
 
 	.LogIn {
-		color: $white;
+		color: $darkgray;
 		background: $orange;
 	}
 
@@ -111,7 +127,7 @@ $lightgray: #e5e5e5;
 }
 
 .signUpForm {
-	color: $white;
+	color: $darkgray;
 	font-weight: 400;
 	font-size: 24px;
 	margin-top: 10%;
@@ -132,6 +148,7 @@ $lightgray: #e5e5e5;
 
 	input {
 		width: 30%;
+		color: $darkgray;
 
 	}
 
@@ -140,7 +157,7 @@ $lightgray: #e5e5e5;
 	}
 
 	.SignUp {
-		color: $white;
+		color: $darkgray;
 		background: $orange;
 		font-size: 14px;
 	}
@@ -195,6 +212,10 @@ a {
 
 .hide {
 	display: none;
+}
+
+.editor {
+	color: $white;
 }
 
 .isSelected{

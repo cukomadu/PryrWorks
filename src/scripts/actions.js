@@ -1,5 +1,6 @@
 import { User, PryrModel, PryrCollection } from './models/models'
 import PRYR_STORE from './pryrStore'
+import toastr from 'toastr'
 
 
 const ACTIONS = {
@@ -7,7 +8,7 @@ const ACTIONS = {
 	signUserUp: function(userObj){
 		User.register(userObj).then( () => ACTIONS.logUserIn(userObj.email, userObj.password),
             (error) => {
-                alert('SignUp Unsuccessful')
+               // alert('SignUp Unsuccessful')
                 //console.log(error)
             }
         )
@@ -16,12 +17,12 @@ const ACTIONS = {
 	logUserIn: function(email, password) {
         User.login(email, password).then(
             (responseData) => {
-                alert(`User ${email} Logged In successfully!`)
+               // alert(`User ${email} Logged In successfully!`)
                 //console.log(responseData)
                 location.hash = 'pryrs/dashboard' 
             },
             (error) => {
-                alert('LogIn Unsuccessful')
+               // alert('LogIn Unsuccessful')
                // console.log(error)
             }
         )
@@ -30,7 +31,7 @@ const ACTIONS = {
     logUserOut: function() { 
         User.logout().then(
             () => {
-            	alert('LogOut Successful')
+            	//alert('LogOut Successful')
             	location.hash = 'home'
             }
         )
@@ -41,11 +42,11 @@ const ACTIONS = {
         newPryr.save().then(
             (responseData) => { 
                 //console.log(responseData)
-                alert('Pryr saved successfully!')
+               // alert('Pryr saved successfully!')
         		location.hash = 'pryrs/dashboard'    
             },
             (error) => {
-                alert('Pryr did not save successfully!')
+                //alert('Pryr did not save successfully!')
                 //console.log(error)
             }
         )
@@ -64,7 +65,7 @@ const ACTIONS = {
                 },
                 
                 (error) => {
-                    alert('Pryr update not successfully')
+                  //  alert('Pryr update not successfully')
                     //console.log(error)
                 }   
             )
@@ -81,11 +82,11 @@ const ACTIONS = {
 
             pryrViewedStatus.save().then((responseData) => {
                 //console.log(responseData)
-                alert('Pryr ViewStatus updated successfully')    
+               // alert('Pryr ViewStatus updated successfully')    
                 },
                 
                 (error) => {
-                    alert('Pryr ViewStatus update not successfully')
+                   // alert('Pryr ViewStatus update not successfully')
                     //console.log(error)
                 }   
             )

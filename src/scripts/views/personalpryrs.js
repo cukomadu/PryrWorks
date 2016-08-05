@@ -67,7 +67,9 @@ const PersonalPryrs = React.createClass({
 		return (
 				<div className="Pryrs">
 					<PostLoginHeader />
-					<h3>Prayers <span className="HeadingToMe">{`To Me <= From Others`}</span></h3>
+					<hr />
+					<h3>My Inbox {/*<span className="HeadingToMe">{`To Me <= From Others`}</span>*/}</h3>
+
 					<NavBar />
 					<ToMePryrs pryrColl={collectionToPassDown} 
 					pDisplay={this.state.pDisplay} buttonState={this.state.buttonState}/>

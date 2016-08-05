@@ -32,7 +32,8 @@ const SharedPryrs = React.createClass({
 		return (
 				<div className="Pryrs">
 					<PostLoginHeader />
-					<h3>Prayers <span className="HeadingFromMe">From Me => To Others</span></h3>
+					<hr />
+					<h3>Shared Prayers {/*<span className="HeadingFromMe">From Me => To Others</span>*/}</h3>
 					<FromMePryrs pryrColl={this.state.pryrCollection}/>
 				</div>
 			)
